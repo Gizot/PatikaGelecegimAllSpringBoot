@@ -25,7 +25,7 @@ public class Comment {
     // bildirmiş oluyoruz ve bu alan null olmasın diyoruz.
     @OnDelete(action = OnDeleteAction.CASCADE) //bir user silindiğinde tüm postlarını da sil dedik
     @JsonIgnore // Serilization işlemlerinde sorun çıkartmasın bize diye ignore ettik.
-    User user;
+    Users users;
     @Lob
     @Column(columnDefinition = "text")
     String Text;

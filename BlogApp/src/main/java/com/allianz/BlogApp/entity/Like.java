@@ -23,7 +23,7 @@ public class Like {
     @JoinColumn(name = "user_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    User user;
+    Users users;
 
 
 }

@@ -6,8 +6,6 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.print.attribute.standard.MediaSize;
-
 @Entity
 @Table(name="post")
 @Data
@@ -22,7 +20,7 @@ public class Post {
     // bildirmiş oluyoruz ve bu alan null olmasın diyoruz.
     @OnDelete(action = OnDeleteAction.CASCADE) //bir user silindiğinde tüm postlarını da sil dedik
     @JsonIgnore // Serilization işlemlerinde sorun çıkartmasın bize diye ignore ettik.
-    User user;
+    Users users;
     String title;
     @Lob
     @Column(columnDefinition="text")

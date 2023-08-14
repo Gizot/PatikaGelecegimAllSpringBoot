@@ -1,7 +1,8 @@
 package com.allianz.BlogApp.service;
 
-import com.allianz.BlogApp.entity.User;
+import com.allianz.BlogApp.entity.Users;
 import com.allianz.BlogApp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,37 +10,38 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    @Autowired
     UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User saveOneUser(User newUser) {
-        return userRepository.save(newUser);
+    public Users saveOneUser(Users newUsers) {
+        return userRepository.save(newUsers);
     }
 
-    public User getOneUser(Long userId) {
+    public Users getOneUser(Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
-    public User updateOneUser(Long userId, User newUser) {
-        Optional<User> user = userRepository.findById(userId); //optional dönüyor o yüzden sol tarafı optional'a aldık
+    public Users updateOneUser(Long userId, Users newUsers) {
+        Optional<Users> user = userRepository.findById(userId); //optional dönüyor o yüzden sol tarafı optional'a aldık
         if (user.isPresent()) {
-            User foundUser = user.get();
-            foundUser.setUserName((newUser.getUserName()));
-            foundUser.setPassword(newUser.getPassword());
-            userRepository.save(foundUser);
-            return foundUser;
+            Users foundUsers = user.get();
+            foundUsers.setUserName((newUsers.getUserName()));
+            foundUsers.setPassword(newUsers.getPassword());
+            userRepository.save(foundUsers);
+            return foundUsers;
         } else
             return null;
     }
 
     public void deleteById(Long userId) {
-        userRepository.deleteById();
+        userRepository.deleteById(userId);
     }
 }
