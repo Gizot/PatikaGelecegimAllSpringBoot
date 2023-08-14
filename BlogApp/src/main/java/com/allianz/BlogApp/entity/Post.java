@@ -23,7 +23,6 @@ public class Post {
     @OnDelete(action = OnDeleteAction.CASCADE) //bir user silindiğinde tüm postlarını da sil dedik
     @JsonIgnore // Serilization işlemlerinde sorun çıkartmasın bize diye ignore ettik.
     User user;
-    Long userId;
     String title;
     @Lob
     @Column(columnDefinition="text")
